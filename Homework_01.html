@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+
+    <title>도라에몽주머니상점</title>
+
+    <style>
+        * {
+            font-family: 'Nanum Myeongjo', serif;
+        }
+
+        .frame_main {
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 0px;
+            margin: auto;
+        }
+
+        .frame_image {
+            width: 500px;
+            height: 500px;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 3px dotted black;
+            border-radius: 15px;
+        }
+
+        .frame_description {
+            width: 500px;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .frame_order {
+            width: 400px;
+            margin-bottom: 50px;
+        }
+
+        .picture01 {
+            width: 400px;
+            height: 400px;
+        }
+
+        .container_description {
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+        }
+
+        .container_description>p {
+            margin-right: 80px;
+        }
+
+        .bold_title {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .description_contents {
+            text-align: justify;
+            text-indent: 10px;
+        }
+
+        .mytitle01 {
+            width: 80px;
+            justify-content: center;
+            /* 문자 정렬을 어떻게 해야할까? text-align, display-flex, display-block */
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="frame_main">
+
+        <div class="frame_image">
+            <img src="https://sites.google.com/site/secrettoolsnow/_/rsrc/1345871586036/takekoputa/takekoputa_2.jpg"
+                class="picture01" alt="여기 사진이 있어야되는데...">
+        </div>
+
+        <div class="frame_description">
+            <div class="container_description">
+                <p class="bold_title">대나무 헬리콥터</p>
+                <h5>가격: 50,000원/개당</h5>
+            </div>
+            <div class="description_contents">어떤 곳이든 붙여서 날 수 있는 '대나무 헬리콥터' 팝니다. 접착면의 강력한 흡착판은 텔레파시 장치가 붙여져 있어 사용자의 사념에
+                의해 탈착을 조작하는 것이 가능합니다. 간편하게 켜고 끌 수 있는 스위치가 있고, 방향 전환을 위한 소형 컴퓨터가 내장되어 있습니다. 프로펠러는 슈퍼 윙으로 100~200kg의 양력을
+                가지고 있습니다.
+            </div>
+        </div>
+
+        <div class="frame_order">
+            <p class="bold_title">주문내용</p>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text mytitle01" id="inputGroup-sizing-default">이 름</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text mytitle01" for="inputGroupSelect01">수 량</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                    <option selected> -- 최대 5개 주문가능 -- </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text mytitle01" id="inputGroup-sizing-default">주 소</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text mytitle01" id="inputGroup-sizing-default">연락처</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+            <hr>
+            <div>
+                <button type="button" class="btn btn-dark btn-lg btn-block">주문하기</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
