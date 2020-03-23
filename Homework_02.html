@@ -9,6 +9,9 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Gamja+Flower&display=swap" rel="stylesheet">
 
+    <!-- JQuery Import -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <title>도라에몽주머니상점</title>
 
     <style>
@@ -81,6 +84,54 @@
             /* 조금만 바꿔서 github에 올리자! */
         }
     </style>
+
+    <script>
+        function order_test() {
+            let user_name = $('#user_name').val();
+            console.log('user_name is ', user_name);
+            // 콘솔로그 어디서 확인 할 수 있나요?
+
+            let inputGroupSelect01 = $('#inputGroupSelect01').val();
+            let user_address = $('#user_address').val();
+            let user_phone_number = $('#user_phone_number').val();
+
+            if (user_name == '') {
+                alert('이름을 입력하세요.')
+                $('#user_name').focus()
+                return
+
+            } else if (inputGroupSelect01 == '') {
+                alert('수량을 선택하세요.')
+                $('#inputGroupSelect01').focus()
+                return
+
+            } else if (user_address == '') {
+                alert('주소를 입력하세요.')
+                $('#user_address').focus()
+                return
+
+            } else if (user_phone_number == '') {
+                alert('휴대폰번호를 입력하세요.')
+                $('#user_phone_number').focus()
+                return
+
+            } else if (!isCellPhone(user_phone_number)) {
+                alert('올바른 휴대폰 번호를 입력하세요.')
+                $('#user_phone_number').focus()
+                return
+
+            } else {
+                alert('주문이 완료 되었습니다.')
+            }
+        }
+
+        function isCellPhone(p) {
+            var regExp = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})[-][0-9]{3,4}[-][0-9]{4}$/;
+            return regExp.test(p);
+        }
+        // 어떻게
+
+    </script>
 </head>
 
 
@@ -109,7 +160,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text mytitle01" id="inputGroup-sizing-default">이 름</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Sizing example input"
+                <input id="user_name" type="text" class="form-control" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-default">
             </div>
 
@@ -118,7 +169,7 @@
                     <label class="input-group-text mytitle01" for="inputGroupSelect01">수 량</label>
                 </div>
                 <select class="custom-select" id="inputGroupSelect01">
-                    <option selected> -- 최대 5개 주문가능 -- </option>
+                    <option selected value=""> -- 최대 5개 주문가능 -- </option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -132,7 +183,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text mytitle01" id="inputGroup-sizing-default">주 소</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Sizing example input"
+                <input id="user_address" type="text" class="form-control" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-default">
             </div>
 
@@ -140,12 +191,12 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text mytitle01" id="inputGroup-sizing-default">연락처</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Sizing example input"
+                <input id="user_phone_number" type="text" class="form-control" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-default">
             </div>
             <hr>
             <div>
-                <button type="button" class="btn btn-dark btn-lg btn-block">주문하기</button>
+                <button type="button" class="btn btn-dark btn-lg btn-block" onclick="order_test()">주문하기</button>
             </div>
         </div>
     </div>
