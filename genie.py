@@ -15,6 +15,8 @@ for music_ranking in music_list:
     artist = music_ranking.select_one("td.info > a.artist.ellipsis")
     rank += 1
     print (rank, title.text.strip(), '/', artist.text)
+    
+    # 랭크를 50위까지만 가져오는 방법은 ?
 
 
 # select를 이용해서, tr들을 불러오기
