@@ -14,7 +14,7 @@ for music_ranking in music_list:
     title = music_ranking.select_one('td.info > a.title.ellipsis')
     artist = music_ranking.select_one("td.info > a.artist.ellipsis")
     rank += 1
-    print (rank, title.text.strip(), '/', artist.text)
+    print(rank, title.text.strip(), '/', artist.text)
 
 
 # select를 이용해서, tr들을 불러오기

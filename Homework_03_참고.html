@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Gamja+Flower&display=swap" rel="stylesheet">
+
+    <!-- JQuery Import -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <title>도라에몽주머니상점</title>
+
+    <style>
+        * {
+            font-family: 'Gamja Flower', cursive;
+        }
+
+        .frame_main {
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 0px;
+            margin: auto;
+        }
+
+        .frame_image {
+            width: 500px;
+            height: 500px;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 3px dotted black;
+            border-radius: 15px;
+        }
+
+        .frame_description {
+            width: 500px;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .frame_order {
+            width: 400px;
+            margin-bottom: 50px;
+        }
+
+        .picture01 {
+            width: 400px;
+            height: 400px;
+        }
+
+        .container_description {
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+        }
+
+        .container_description>p {
+            margin-right: 80px;
+        }
+
+        .bold_title {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .description_contents {
+            text-align: justify;
+            text-indent: 10px;
+        }
+
+        .mytitle01 {
+            width: 80px;
+            justify-content: center;
+            /* 문자 정렬을 어떻게 해야할까? text-align, display-flex, display-block */
+            /* 조금만 바꿔서 github에 올리자! */
+        }
+
+        .order_list {
+            width: 400px
+        }
+    </style>
+
+    <script>
+        function order_test() {
+            let user_name = $('#user_name').val();
+            console.log('user_name is ', user_name);
+            // 콘솔로그 어디서 확인 할 수 있나요?
+
+            let inputGroupSelect01 = $('#inputGroupSelect01').val();
+            let user_address = $('#user_address').val();
+            let user_phone_number = $('#user_phone_number').val();
+
+            if (user_name == '') {
+                alert('이름을 입력하세요.')
+                $('#user_name').focus()
+                return;
+
+            } else if (inputGroupSelect01 == '') {
+                alert('수량을 선택하세요.')
+                $('#inputGroupSelect01').focus()
+                return;
+
+            } else if (user_address == '') {
+                alert('주소를 입력하세요.')
+                $('#user_address').focus()
+                return;
+
+            } else if (user_phone_number == '') {
+                alert('휴대폰번호를 입력하세요.')
+                $('#user_phone_number').focus()
+                return;
+
+            } else if (!isCellPhone(user_phone_number)) {
+                alert('올바른 휴대폰 번호를 입력하세요.')
+                $('#user_phone_number').focus()
+                return;
+
+            } else {
+                alert('주문이 전송되었습니다.')
+            }
+
+            
+
+
+            // $.ajax({
+            //     type: "POST",
+            //     url: "/orders",
+            //     data: { name_give: user_name, select_give: inputGroupSelect01, address_give: user_address, phone_give: user_phone_number },
+            //     success: function (response) {
+            //         if (response['result'] == 'success') {
+            //             alert(respose['msg'];
+            //             $('#user_name').val('');
+            //             $('#inputGroupSelect01').val('');
+            //             $('#user_address').val('');
+            //             $('#user_phone_number').val('');
+            //             window.location.reload();
+            //         }
+            //     }
+            // })
+        }
+
+        function isCellPhone(p) {
+            var regExp = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})[-][0-9]{3,4}[-][0-9]{4}$/;
+            return regExp.test(p);
+        }
+        // 어떻게
+
+
+        $(document).ready(function () {
+            $('#orders-box').html('');
+            listing();
+        });
+
+        function listing() {
+            $.ajax({
+                type: "GET",
+                url: "/orders",
+                data: {},
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        let orders = response['orders'];
+                        for (let i = 0; i < orders.length; i++) {
+                            make_list(orders[i]['name'], orders[i]['count'], orders[i]['address'], orders[i]['phone'])
+                        }
+                    } else {
+                        alert('!!!!!');
+                    }
+                }
+            })
+        }
+
+        function make_list(name, count, address, phone) {
+            let temp_html = '<tr>\
+            <td>'+ name + '</td>\
+            <td>'+ count + '</td>\
+            <td>'+ address + '</td>\
+            <td>'+ phone + '</td>\
+          </tr>';
+            $('#orders_table').append(temp_html);
+        }
+
+    </script>
+</head>
+
+
+<body>
+    <div class="frame_main">
+
+        <div class="frame_image">
+            <img src="https://sites.google.com/site/secrettoolsnow/_/rsrc/1345871586036/takekoputa/takekoputa_2.jpg"
+                class="picture01" alt="여기 사진이 있어야되는데...">
+        </div>
+
+        <div class="frame_description">
+            <div class="container_description">
+                <p class="bold_title">대나무 헬리콥터</p>
+                <h5>가격: 50,000원/개당</h5>
+            </div>
+            <div class="description_contents">어떤 곳이든 붙여서 날 수 있는 '대나무 헬리콥터' 팝니다. 접착면의 강력한 흡착판은 텔레파시 장치가 붙여져 있어 사용자의 사념에
+                의해 탈착을 조작하는 것이 가능합니다. 간편하게 켜고 끌 수 있는 스위치가 있고, 방향 전환을 위한 소형 컴퓨터가 내장되어 있습니다. 프로펠러는 슈퍼 윙으로 100~200kg의 양력을
+                가지고 있습니다.
+            </div>
+        </div>
+
+        <div class="frame_order">
+            <p class="bold_title">주문내용</p>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text mytitle01" id="inputGroup-sizing-default">이 름</span>
+                </div>
+                <input id="user_name" type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text mytitle01" for="inputGroupSelect01">수 량</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                    <option selected value=""> -- 최대 5개 주문가능 -- </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text mytitle01" id="inputGroup-sizing-default">주 소</span>
+                </div>
+                <input id="user_address" type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text mytitle01" id="inputGroup-sizing-default">연락처</span>
+                </div>
+                <input id="user_phone_number" type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+            <hr>
+            <div>
+                <button type="button" class="btn btn-dark btn-lg btn-block" onclick="order_test()">주문하기</button>
+            </div>
+        </div>
+
+        <div class="order_list">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">이름</th>
+                        <th scope="col">수량</th>
+                        <th scope="col">주소</th>
+                        <th scope="col">전화번호</th>
+                    </tr>
+                </thead>
+                <tbody class='orders_table'></tbody>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
